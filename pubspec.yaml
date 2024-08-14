@@ -1,7 +1,7 @@
 name: bluetooth_gate_control
 description: A Flutter app to control a motorized gate via Bluetooth.
 
-version: 1.0.0+1
+version: 1.0.1
 
 environment:
   sdk: ">=2.19.0 <3.0.0"
