@@ -26,6 +26,8 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 void main() {
   runApp(const MyApp());
@@ -42,10 +44,36 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Test App'),
         ),
-        body: const Center(
-          child: Text('Hello, iPhone!', style: TextStyle(fontSize: 24)),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                getPlatformGreeting(),
+                style: const TextStyle(fontSize: 24),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  // This is where you'd put your Bluetooth logic for iOS
+                  print('Button pressed!');
+                },
+                child: const Text('Test Button'),
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  String getPlatformGreeting() {
+    if (kIsWeb) {
+      return 'Hello, Chrome!';
+    } else if (Platform.isIOS) {
+      return 'Hello, iPhone!';
+    } else {
+      return 'Hello, Other Platform!';
+    }
   }
 }
